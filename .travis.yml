@@ -1,0 +1,9 @@
+language: csharp
+solution: DD.DotNet.ExtensionPack/DD.DotNet.ExtensionPack.sln
+matrix:
+  include:
+    - dotnet: 2.0.0
+script:
+  - cd ./DD.DotNet.ExtensionPack
+  - dotnet restore
+  - dotnet test DDDotNetExtensionPackTests/DDDotNetExtensionPackTests.csproj

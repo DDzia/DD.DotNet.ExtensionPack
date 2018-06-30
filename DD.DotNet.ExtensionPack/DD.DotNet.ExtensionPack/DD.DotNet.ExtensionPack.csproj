@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>Denis Derkach</Authors>
+    <Company>DD</Company>
+    <PackageProjectUrl>https://github.com/derkachdeveloper/DD.DotNet.ExtensionPack</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/derkachdeveloper/DD.DotNet.ExtensionPack</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>#dotnet #netextend</PackageTags>
+    <PackageLicenseUrl>https://github.com/derkachdeveloper/DD.DotNet.ExtensionPack/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright (c) 2018 Derkach Denis</Copyright>
+    <Description>Awesome types which extends types of FCL.</Description>
+    <PackageReleaseNotes>Added Argument Null-Checks.
+Added parameter changing for expressions.</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
