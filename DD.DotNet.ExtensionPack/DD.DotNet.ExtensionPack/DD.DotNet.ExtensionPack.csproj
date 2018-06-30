@@ -15,6 +15,7 @@
     <Description>Awesome types which extends types of FCL.</Description>
     <PackageReleaseNotes>Added Argument Null-Checks.
 Added parameter changing for expressions.</PackageReleaseNotes>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
 </Project>
