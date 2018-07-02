@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Linq;
 using DD.DotNet.ExtensionPack.Collections;
 using NUnit.Framework;
 
@@ -9,71 +8,39 @@ namespace DDDotNetExtensionPackTests.Collections
     public partial class EnumerableExtensionsTests
     {
         [Test]
-        public void ForEach_EnumetareRealCollectionWithIndex_CallbacksCalled()
+        public void Do_HandlerNotInvokedForAggregationOnly_SumCalculatedForFirstCaseOnly()
         {
             // Arrange
-            var collection = new[]
-            {
-                "a", "b", "c"
-            };
-            var expectedSum = 3;
+            var collectionSize = 500;
+            var skipSize = 100;
+            var items = Enumerable.Range(0, collectionSize);
 
             // Act
-            var result = String.Empty;
-            long indexesSum = 0;
-            collection.ForEach((x, index) =>
-            {
-                result += x;
-                checked
-                {
-                    indexesSum += index;
-                }
-            });
+            var lastIndexFirstCall = -1;
+            items.Skip(skipSize)
+                .Do((item, index) => lastIndexFirstCall = index);
+            var lastIndexSecondCall = -1;
+            items.Skip(skipSize)
+                .Do((item, index) => lastIndexSecondCall = index)
+                .ToArray();
 
             // Assert
-            Assert.AreEqual(String.Join(String.Empty, collection), result);
-            Assert.AreEqual(indexesSum, expectedSum);
+            Assert.AreEqual(lastIndexFirstCall, -1);
+            Assert.AreEqual(lastIndexSecondCall, collectionSize - 1 - skipSize);
         }
 
         [Test]
-        public void ForEach_EnumetareRealCollectionWithoutIndex_CallbacksCalled()
+        public void Do_HandlerInvokedWithAggregation_ReturnedCollectionWithSameItems()
         {
             // Arrange
-            var collection = new[]
-            {
-                "a", "b", "c"
-            };
+            var collectionSize = 500;
+            var items = Enumerable.Range(0, collectionSize);
 
             // Act
-            var result = String.Empty;
-            collection.ForEach(x => result += x);
+            var returned = items.Do(() => { }).ToArray();
 
             // Assert
-            Assert.AreEqual(String.Join(String.Empty, collection), result);
-        }
-
-        [Test]
-        public void ForEach_CollectionArgumentIsNull_ExpectedException()
-        {
-            // Arrange
-            IEnumerable<string> collection = null;
-
-            // Assert
-            Assert.Throws<ArgumentNullException>(() => EnumerableExtensions.ForEach(collection, _ => { }));
-        }
-
-        [Test]
-        public void ForEach_EnumetareRealCollectionWithNullHandler_ExpectedException()
-        {
-            // Arrange
-            var collection = new[]
-            {
-                "a", "b", "c"
-            };
-            Action<string> handler = null;
-
-            // Assert
-            Assert.Throws<ArgumentNullException>(() => collection.ForEach(handler));
+            Assert.AreEqual(returned.Intersect(items).Count(), collectionSize);
         }
     }
 }
