@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
-using CheckArgument = DD.DotNet.ExtensionPack.Check.Argument;
+using DD.DotNet.ExtensionPack.Validation;
 
 
 namespace DD.DotNet.ExtensionPack.Expressions
@@ -12,21 +12,21 @@ namespace DD.DotNet.ExtensionPack.Expressions
         /// <summary>
         /// Convert expression to lambda.
         /// </summary>
-        /// <typeparam name="TParam0">Parameter type.</typeparam>
+        /// <typeparam name="TParam">Parameter type.</typeparam>
         /// <typeparam name="TResult">Result type.</typeparam>
         /// <param name="expression">Current expression.</param>
         /// <returns>Converted lambda expression.</returns>
         /// <exception cref="ArgumentNullException">Thown if <paramref name="expression"/> is null.</exception>
-        public static Expression<Func<TParam0, TResult>> ToLambda<TParam0, TResult>(this Expression expression)
+        public static Expression<Func<TParam, TResult>> ToLambda<TParam, TResult>(this Expression expression)
         {
-            CheckArgument.ThrowIfNull(() => expression);
+            Argument.ThrowIfNull(() => expression);
 
-            if (expression is Expression<Func<TParam0, TResult>> readyLambda)
+            if (expression is Expression<Func<TParam, TResult>> readyLambda)
             {
                 return readyLambda;
             }
 
-            var lambda = Expression.Lambda<Func<TParam0, TResult>>(expression);
+            var lambda = Expression.Lambda<Func<TParam, TResult>>(expression);
             return lambda;
         }
 
@@ -39,7 +39,7 @@ namespace DD.DotNet.ExtensionPack.Expressions
         /// <exception cref="ArgumentNullException">Thown if <paramref name="expression"/> is null.</exception>
         public static Expression<Func<TResult>> ToLambda<TResult>(this Expression expression)
         {
-            CheckArgument.ThrowIfNull(() => expression);
+            Argument.ThrowIfNull(() => expression);
 
             if (expression is Expression<Func<TResult>> readyLambda)
             {
@@ -65,7 +65,7 @@ namespace DD.DotNet.ExtensionPack.Expressions
         /// </exception>
         public static Expression ChangeParameterType<TSource, TTarget>(this Expression expression)
         {
-            CheckArgument.ThrowIfNull(() => expression);
+            Argument.ThrowIfNull(() => expression);
 
             var replaced = ChangeParameterType(expression, typeof(TSource), typeof(TTarget));
             return replaced;

@@ -1,5 +1,6 @@
 ﻿using System;
 using DD.DotNet.ExtensionPack;
+using DD.DotNet.ExtensionPack.Validation;
 using NUnit.Framework;
 
 namespace DDDotNetExtensionPackTests
@@ -16,8 +17,8 @@ namespace DDDotNetExtensionPackTests
             var expectedExMessage = BuildExpectedMessage(oName);
 
             // Act
-            var exOfVariable = Assert.Throws<ArgumentNullException>(() => Check.Argument.ThrowIfNullOrReturn(o));
-            var exOfLambda = Assert.Throws<ArgumentNullException>(() => Check.Argument.ThrowIfNullOrReturn(() => o));
+            var exOfVariable = Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfNullOrReturn(o));
+            var exOfLambda = Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfNullOrReturn(() => o));
 
             // Begin Assert
             Assert.IsNull(exOfVariable.ParamName);
@@ -38,8 +39,8 @@ namespace DDDotNetExtensionPackTests
             var expectedMsg = BuildExpectedMessage(oName, exMsg);
 
             // Act
-            var exOfVariable = Assert.Throws<ArgumentNullException>(() => Check.Argument.ThrowIfNullOrReturn(o, oName, exMsg));
-            var exOfLambda = Assert.Throws<ArgumentNullException>(() => Check.Argument.ThrowIfNullOrReturn(() => o, exMsg));
+            var exOfVariable = Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfNullOrReturn(o, oName, exMsg));
+            var exOfLambda = Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfNullOrReturn(() => o, exMsg));
 
             // Begin Assert
             Assert.AreEqual(exOfVariable.ParamName, oName);
@@ -58,9 +59,9 @@ namespace DDDotNetExtensionPackTests
 
             // Act
             object returnOfVariable = null;
-            Assert.DoesNotThrow(() => returnOfVariable = Check.Argument.ThrowIfNullOrReturn(value));
+            Assert.DoesNotThrow(() => returnOfVariable = Argument.ThrowIfNullOrReturn(value));
             object returnOfLambda = null;
-            Assert.DoesNotThrow(() => returnOfLambda = Check.Argument.ThrowIfNullOrReturn(() => value));
+            Assert.DoesNotThrow(() => returnOfLambda = Argument.ThrowIfNullOrReturn(() => value));
             
             // Act
             Assert.AreEqual(value, returnOfVariable);

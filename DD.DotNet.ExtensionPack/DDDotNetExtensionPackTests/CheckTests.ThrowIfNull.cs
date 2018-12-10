@@ -1,5 +1,6 @@
 ﻿using System;
 using DD.DotNet.ExtensionPack;
+using DD.DotNet.ExtensionPack.Validation;
 using NUnit.Framework;
 
 namespace DDDotNetExtensionPackTests
@@ -16,8 +17,8 @@ namespace DDDotNetExtensionPackTests
             var expectedMsg = BuildExpectedMessage(oName);
 
             // Act
-            var exOfVariable = Assert.Throws<ArgumentNullException>(() => Check.Argument.ThrowIfNull(o));
-            var exOfLambda = Assert.Throws<ArgumentNullException>(() => Check.Argument.ThrowIfNull(() => o));
+            var exOfVariable = Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfNull(o));
+            var exOfLambda = Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfNull(() => o));
 
             // Begin Assert
             Assert.IsNull(exOfVariable.ParamName);
@@ -38,8 +39,8 @@ namespace DDDotNetExtensionPackTests
             var expectedMsg = BuildExpectedMessage(oName, msg);
 
             // Act
-            var exOfVariable = Assert.Throws<ArgumentNullException>(() => Check.Argument.ThrowIfNull(o, oName, msg));
-            var exOfLambda =  Assert.Throws<ArgumentNullException>(() => Check.Argument.ThrowIfNull(() => o, msg));
+            var exOfVariable = Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfNull(o, oName, msg));
+            var exOfLambda =  Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfNull(() => o, msg));
 
             // Begin Assert
             Assert.AreEqual(exOfVariable.ParamName, oName);
@@ -57,8 +58,8 @@ namespace DDDotNetExtensionPackTests
             var o = new Object();
 
             // Assert
-            Assert.DoesNotThrow(() => Check.Argument.ThrowIfNull(o));
-            Assert.DoesNotThrow(() => Check.Argument.ThrowIfNull(() => o));
+            Assert.DoesNotThrow(() => Argument.ThrowIfNull(o));
+            Assert.DoesNotThrow(() => Argument.ThrowIfNull(() => o));
         }
     }
 }

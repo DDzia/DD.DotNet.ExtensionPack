@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 using DD.DotNet.ExtensionPack.Utils;
+using DD.DotNet.ExtensionPack.Validation;
 
 namespace DD.DotNet.ExtensionPack.Expressions
 {
@@ -31,8 +32,8 @@ namespace DD.DotNet.ExtensionPack.Expressions
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="sourceType"/> or <paramref name="targetType"/> is null.</exception>
         public ParameterReplacer(Type sourceType, Type targetType)
         {
-            _sourceType = Check.Argument.ThrowIfNullOrReturn(() => sourceType);
-            _targetType = Check.Argument.ThrowIfNullOrReturn(() => targetType);
+            _sourceType = Argument.ThrowIfNullOrReturn(() => sourceType);
+            _targetType = Argument.ThrowIfNullOrReturn(() => targetType);
         }
 
         protected override Expression VisitLambda<T>(Expression<T> node)
