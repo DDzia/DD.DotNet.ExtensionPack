@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Authors>Denis Derkach</Authors>
-    <Company>DD</Company>
+    <Company>Denis Derkach</Company>
     <PackageProjectUrl>https://github.com/derkachdeveloper/DD.DotNet.ExtensionPack</PackageProjectUrl>
     <RepositoryUrl>https://github.com/derkachdeveloper/DD.DotNet.ExtensionPack</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -14,9 +14,10 @@
     <Copyright>Copyright (c) 2018 Derkach Denis</Copyright>
     <Description>Awesome types which extends types of FCL.</Description>
     <PackageReleaseNotes>Added Argument Null-Checks.
-Added parameter changing for expressions.</PackageReleaseNotes>
-    <Version>1.2.0</Version>
-    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+Added parameter changing for expressions.
+Objects disposing.</PackageReleaseNotes>
+    <Version>2.0.0</Version>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
 </Project>

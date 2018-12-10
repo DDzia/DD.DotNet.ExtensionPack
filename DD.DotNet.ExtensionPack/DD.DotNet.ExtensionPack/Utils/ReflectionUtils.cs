@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using DD.DotNet.ExtensionPack.Validation;
 
 namespace DD.DotNet.ExtensionPack.Utils
 {
@@ -19,7 +20,7 @@ namespace DD.DotNet.ExtensionPack.Utils
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="mi"/> is null.</exception>
         public static BindingFlags ResolveBindingFlags(MethodInfo mi)
         {
-            Check.Argument.ThrowIfNull(() => mi);
+            Argument.ThrowIfNull(() => mi);
 
             var flags = BindingFlags.InvokeMethod;
 
@@ -46,7 +47,7 @@ namespace DD.DotNet.ExtensionPack.Utils
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="fi"/> is null.</exception>
         public static BindingFlags ResolveBindingFlags(FieldInfo fi)
         {
-            Check.Argument.ThrowIfNull(() => fi);
+            Argument.ThrowIfNull(() => fi);
 
             var flags = BindingFlags.InvokeMethod;
 
@@ -76,8 +77,8 @@ namespace DD.DotNet.ExtensionPack.Utils
         /// <exception cref="System.ArgumentNullException">Thrown when <paramref name="searchType"/> or <paramref name="sourceMi"/> is null.</exception>
         public static MethodInfo FindSameMethod(Type searchType, MethodInfo sourceMi)
         {
-            Check.Argument.ThrowIfNull(() => searchType);
-            Check.Argument.ThrowIfNull(() => sourceMi);
+            Argument.ThrowIfNull(() => searchType);
+            Argument.ThrowIfNull(() => sourceMi);
 
             var bindings = ResolveBindingFlags(sourceMi);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DD.DotNet.ExtensionPack.Validation;
 
 namespace DD.DotNet.ExtensionPack.Collections
 {
@@ -15,8 +16,8 @@ namespace DD.DotNet.ExtensionPack.Collections
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> or <paramref name="handler"/> is null.</exception>
         public static IEnumerable<T> Do<T>(this IEnumerable<T> self, Action<T, long> handler)
         {
-            Check.Argument.ThrowIfNull(() => self);
-            Check.Argument.ThrowIfNull(() => handler);
+            Argument.ThrowIfNull(() => self);
+            Argument.ThrowIfNull(() => handler);
 
             long currentIndex = 0;
             foreach (var item in self)
@@ -36,8 +37,8 @@ namespace DD.DotNet.ExtensionPack.Collections
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> or <paramref name="handler"/> is null.</exception>
         public static IEnumerable<T> Do<T>(this IEnumerable<T> self, Action<T, int> handler)
         {
-            Check.Argument.ThrowIfNull(() => self);
-            Check.Argument.ThrowIfNull(() => handler);
+            Argument.ThrowIfNull(() => self);
+            Argument.ThrowIfNull(() => handler);
 
             int currentIndex = 0;
             foreach (var item in self)
@@ -57,7 +58,7 @@ namespace DD.DotNet.ExtensionPack.Collections
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> or <paramref name="handler"/> is null.</exception>
         public static IEnumerable<T> Do<T>(this IEnumerable<T> self, Action<T> handler)
         {
-            Check.Argument.ThrowIfNull(() => handler);
+            Argument.ThrowIfNull(() => handler);
 
             Action<T, long> wrapHandler = (item, index) => handler(item);
             return Do(self, wrapHandler);
@@ -73,7 +74,7 @@ namespace DD.DotNet.ExtensionPack.Collections
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="self"/> or <paramref name="handler"/> is null.</exception>
         public static IEnumerable<T> Do<T>(this IEnumerable<T> self, Action handler)
         {
-            Check.Argument.ThrowIfNull(() => handler);
+            Argument.ThrowIfNull(() => handler);
 
             Action<T> wrapHandler = item => handler();
             return Do(self, wrapHandler);
